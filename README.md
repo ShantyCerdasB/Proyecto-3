@@ -1,2 +1,1 @@
-# java-spring
-Proyecto spring base para cursos de proyecto
+Tarea tecnica shanty cerdas
