@@ -1,0 +1,386 @@
+{
+  "_type": "export",
+  "__export_format": 4,
+  "__export_date": "2025-02-20T12:00:00.000Z",
+  "__export_source": "insomnia.desktop.app:v10.0.0",
+  "resources": [
+    {
+      "_id": "wrk_products_categories",
+      "parentId": null,
+      "modified": 0,
+      "created": 0,
+      "name": "Products & Categories Collection",
+      "description": "Collection for testing Product and Category endpoints",
+      "scope": "collection",
+      "_type": "workspace"
+    },
+    {
+      "_id": "env_base",
+      "parentId": "wrk_products_categories",
+      "modified": 0,
+      "created": 0,
+      "name": "Base Environment",
+      "data": {
+        "base_url": "http://localhost:3307/",
+        "jwt_token": ""
+      },
+      "dataPropertyOrder": null,
+      "color": null,
+      "isPrivate": false,
+      "metaSortKey": 1,
+      "_type": "environment"
+    },
+    {
+      "_id": "req_login_super_admin",
+      "parentId": "wrk_products_categories",
+      "modified": 0,
+      "created": 0,
+      "url": "{{ _.base_url }}auth/login",
+      "name": "Login as Super Admin",
+      "description": "Obtain JWT token using super admin credentials",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"email\": \"super.admin@gmail.com\",\n  \"password\": \"superadmin123\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": 2,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "_type": "request"
+    },
+    {
+      "_id": "req_login_normal_user",
+      "parentId": "wrk_products_categories",
+      "modified": 0,
+      "created": 0,
+      "url": "{{ _.base_url }}auth/login",
+      "name": "Login as Normal User",
+      "description": "Obtain JWT token using normal user credentials",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"email\": \"normal.user@gmail.com\",\n  \"password\": \"normaluser123\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": 3,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "_type": "request"
+    },
+    {
+      "_id": "req_get_all_categories",
+      "parentId": "wrk_products_categories",
+      "modified": 0,
+      "created": 0,
+      "url": "{{ _.base_url }}api/categories",
+      "name": "Get all Categories",
+      "description": "List all categories (requires authentication)",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ jwt_token }}"
+        }
+      ],
+      "authentication": {
+        "type": "bearer",
+        "token": "{{ jwt_token }}"
+      },
+      "metaSortKey": 4,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "_type": "request"
+    },
+    {
+      "_id": "req_get_category_by_id",
+      "parentId": "wrk_products_categories",
+      "modified": 0,
+      "created": 0,
+      "url": "{{ _.base_url }}api/categories/1",
+      "name": "Get Category by ID",
+      "description": "Retrieve a single category by its ID (requires authentication)",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ jwt_token }}"
+        }
+      ],
+      "authentication": {
+        "type": "bearer",
+        "token": "{{ jwt_token }}"
+      },
+      "metaSortKey": 5,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "_type": "request"
+    },
+    {
+      "_id": "req_create_category",
+      "parentId": "wrk_products_categories",
+      "modified": 0,
+      "created": 0,
+      "url": "{{ _.base_url }}api/categories",
+      "name": "Create Category",
+      "description": "Create a new category (SUPER_ADMIN_ROLE required)",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"name\": \"Electronics\",\n  \"description\": \"Devices and gadgets\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ jwt_token }}"
+        },
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {
+        "type": "bearer",
+        "token": "{{ jwt_token }}"
+      },
+      "metaSortKey": 6,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "_type": "request"
+    },
+    {
+      "_id": "req_update_category",
+      "parentId": "wrk_products_categories",
+      "modified": 0,
+      "created": 0,
+      "url": "{{ _.base_url }}api/categories/1",
+      "name": "Update Category",
+      "description": "Update an existing category (SUPER_ADMIN_ROLE required)",
+      "method": "PUT",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"name\": \"Electronics Updated\",\n  \"description\": \"Updated category description\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ jwt_token }}"
+        },
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {
+        "type": "bearer",
+        "token": "{{ jwt_token }}"
+      },
+      "metaSortKey": 7,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "_type": "request"
+    },
+    {
+      "_id": "req_delete_category",
+      "parentId": "wrk_products_categories",
+      "modified": 0,
+      "created": 0,
+      "url": "{{ _.base_url }}api/categories/1",
+      "name": "Delete Category",
+      "description": "Delete a category (SUPER_ADMIN_ROLE required)",
+      "method": "DELETE",
+      "body": {},
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ jwt_token }}"
+        }
+      ],
+      "authentication": {
+        "type": "bearer",
+        "token": "{{ jwt_token }}"
+      },
+      "metaSortKey": 8,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "_type": "request"
+    },
+    {
+      "_id": "req_get_all_products",
+      "parentId": "wrk_products_categories",
+      "modified": 0,
+      "created": 0,
+      "url": "{{ _.base_url }}api/products",
+      "name": "Get all Products",
+      "description": "List all products (requires authentication)",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ jwt_token }}"
+        }
+      ],
+      "authentication": {
+        "type": "bearer",
+        "token": "{{ jwt_token }}"
+      },
+      "metaSortKey": 9,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "_type": "request"
+    },
+    {
+      "_id": "req_get_product_by_id",
+      "parentId": "wrk_products_categories",
+      "modified": 0,
+      "created": 0,
+      "url": "{{ _.base_url }}api/products/1",
+      "name": "Get Product by ID",
+      "description": "Retrieve a single product by its ID (requires authentication)",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ jwt_token }}"
+        }
+      ],
+      "authentication": {
+        "type": "bearer",
+        "token": "{{ jwt_token }}"
+      },
+      "metaSortKey": 10,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "_type": "request"
+    },
+    {
+      "_id": "req_create_product",
+      "parentId": "wrk_products_categories",
+      "modified": 0,
+      "created": 0,
+      "url": "{{ _.base_url }}api/products",
+      "name": "Create Product",
+      "description": "Create a new product (SUPER_ADMIN_ROLE required). Must reference an existing category ID.",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"name\": \"Smartphone\",\n  \"description\": \"Latest smartphone model\",\n  \"price\": 699.99,\n  \"stockQuantity\": 100,\n  \"category\": { \"id\": 1 }\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ jwt_token }}"
+        },
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {
+        "type": "bearer",
+        "token": "{{ jwt_token }}"
+      },
+      "metaSortKey": 11,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "_type": "request"
+    },
+    {
+      "_id": "req_update_product",
+      "parentId": "wrk_products_categories",
+      "modified": 0,
+      "created": 0,
+      "url": "{{ _.base_url }}api/products/1",
+      "name": "Update Product",
+      "description": "Fully update an existing product (SUPER_ADMIN_ROLE required)",
+      "method": "PUT",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"name\": \"Smartphone Updated\",\n  \"description\": \"Updated smartphone description\",\n  \"price\": 749.99,\n  \"stockQuantity\": 90,\n  \"category\": { \"id\": 1 }\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ jwt_token }}"
+        },
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {
+        "type": "bearer",
+        "token": "{{ jwt_token }}"
+      },
+      "metaSortKey": 12,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "_type": "request"
+    },
+    {
+      "_id": "req_delete_product",
+      "parentId": "wrk_products_categories",
+      "modified": 0,
+      "created": 0,
+      "url": "{{ _.base_url }}api/products/1",
+      "name": "Delete Product",
+      "description": "Delete a product (SUPER_ADMIN_ROLE required)",
+      "method": "DELETE",
+      "body": {},
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ jwt_token }}"
+        }
+      ],
+      "authentication": {
+        "type": "bearer",
+        "token": "{{ jwt_token }}"
+      },
+      "metaSortKey": 13,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "_type": "request"
+    }
+  ]
+}
